@@ -1,4 +1,4 @@
 package org.sanaa.setnence.citronix.citronix.entity;
 
-public class Farmer {
+public class HarvestDetail {
 }
