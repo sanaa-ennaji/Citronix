@@ -36,7 +36,7 @@ public class Farm {
     @PastOrPresent(message = "date should be in the future.")
     private LocalDate createDate ;
 
-    @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "farm" , cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Field> fields ;
 
 
