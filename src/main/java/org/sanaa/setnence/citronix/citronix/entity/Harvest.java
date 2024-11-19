@@ -1,12 +1,10 @@
 package org.sanaa.setnence.citronix.citronix.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.sanaa.setnence.citronix.citronix.entity.enums.Season;
 
 @Data
 @NoArgsConstructor
@@ -16,4 +14,10 @@ public class Harvest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id ;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Season season;
+
+
 }
