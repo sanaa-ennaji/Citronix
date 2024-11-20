@@ -1,4 +1,4 @@
 package org.sanaa.setnence.citronix.citronix.validation;
 
-public class Exits {
+public class ExitsValidator {
 }
