@@ -1,6 +1,7 @@
 package org.sanaa.setnence.citronix.citronix.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class Tree {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id ;
 
+    @PastOrPresent(message = "The planting date must be in the past or today")
     private LocalDate plantingDate;
 
     private int age ;

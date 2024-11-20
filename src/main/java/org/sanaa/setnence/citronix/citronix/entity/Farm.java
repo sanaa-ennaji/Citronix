@@ -33,7 +33,6 @@ public class Farm {
     private double area ;
 
     @NotNull
-    @PastOrPresent(message = "date should be in the future.")
     private LocalDate createDate ;
 
     @OneToMany(mappedBy = "farm" , cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
