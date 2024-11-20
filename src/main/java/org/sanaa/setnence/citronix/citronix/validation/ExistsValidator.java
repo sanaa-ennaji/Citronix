@@ -7,7 +7,7 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.sanaa.setnence.citronix.citronix.validation.annotation.Exists;
 
-public class ExitsValidator implements ConstraintValidator<Exists, Long> {
+public class ExistsValidator implements ConstraintValidator<Exists, Long> {
 
     @PersistenceContext
     private EntityManager entityManager;
