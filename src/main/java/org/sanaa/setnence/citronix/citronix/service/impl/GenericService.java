@@ -28,7 +28,7 @@ public class GenericService<Entity, CreateDTO, UpdateDTO, ResponseDTO> implement
     public ResponseDTO update(Long id, UpdateDTO updateDTO) {
         Optional<Entity> optionalEntity = repository.findById(id);
         if (optionalEntity.isEmpty()) {
-            throw new EntityNotFoundException("Entity not found with id: " + id);
+            throw new EntityNotFoundException("entity not found with id: " + id);
         }
         Entity entity = optionalEntity.get();
         mapper.updateEntityFromDTO(updateDTO, entity);
