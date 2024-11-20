@@ -1,17 +1,22 @@
 package org.sanaa.setnence.citronix.citronix.mapper;
 
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-public class FarmMapper {
+@Mapper(componentModel = "spring")
+public interface FarmMapper extends GenericMapper<Farm, FarmCreateDTO, FarmUpdateDTO, FarmResponseDTO> {
 
+    @Override
+    @Mapping(target = "fields", ignore = true) // Avoiding potential recursive mapping issues
+    Farm toEntity(FarmCreateDTO createDTO);
 
-    FarmMapper INSTANCE = Mappers.getMapper(FarmMapper.class);
+    @Override
+    @Mapping(target = "fields", source = "fields")
+    FarmResponseDTO toDTO(Farm entity);
 
-    @Mapping(source = "parentFarmId", target = "parentFarm.id")
-    Farm toEntity(FarmDTO farmDTO);
+    @Override
+    List<FarmResponseDTO> toDTOs(List<Farm> entities);
 
-
-    @Mapping(source = "parentFarm.id", target = "parentFarmId")
-    FarmDTO toDto(Farm farm);
-
+    @Override
+    void updateEntityFromDTO(FarmUpdateDTO updateDTO, @MappingTarget Farm entity);
 }
