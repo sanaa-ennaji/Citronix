@@ -1,4 +1,4 @@
-package org.sanaa.setnence.citronix.citronix.service;
+package org.sanaa.setnence.citronix.citronix.service.impl;
 
 public class FarmService {
 }
