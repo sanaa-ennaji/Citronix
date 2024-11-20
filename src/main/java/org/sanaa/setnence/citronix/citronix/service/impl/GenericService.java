@@ -1,6 +1,4 @@
 package org.sanaa.setnence.citronix.citronix.service.impl;
 
-public class FarmService {
-
-
+public class GenericService {
 }
