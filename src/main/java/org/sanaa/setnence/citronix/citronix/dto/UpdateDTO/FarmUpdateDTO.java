@@ -24,5 +24,5 @@ public class FarmUpdateDTO {
     private double area;
 
     @NotNull(message = "Creation date cannot be null")
-    private LocalDate creationDate;
+    private LocalDate createDate;
 }

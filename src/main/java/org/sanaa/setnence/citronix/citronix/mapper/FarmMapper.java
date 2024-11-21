@@ -15,6 +15,7 @@ public interface FarmMapper extends GenericMapper<Farm, FarmCreateDTO, FarmUpdat
 
     @Override
     @Mapping(target = "fields", ignore = true)
+    @Mapping(target = "createDate", source = "createDate")
     Farm toEntity(FarmCreateDTO createDTO);
 
     @Override

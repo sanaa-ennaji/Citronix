@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -32,8 +31,7 @@ public class Farm {
     @Column(nullable = false)
     private double area ;
 
-    @NotNull(message = "Create date must not be null.")
-
+    @NotNull
     private LocalDate createDate ;
 
     @OneToMany(mappedBy = "farm" , cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)

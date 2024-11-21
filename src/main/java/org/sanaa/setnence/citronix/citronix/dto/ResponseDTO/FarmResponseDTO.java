@@ -16,13 +16,9 @@ import java.util.List;
 public class FarmResponseDTO {
 
     private long id ;
-    @NotNull
     private String name;
-    @NotBlank
     private String location;
-    @NotNull
     private double area;
-    @NotNull
-    private LocalDate creationDate;
+    private LocalDate createDate;
     private List<FieldEmbbededDTO> fields ;
 }
