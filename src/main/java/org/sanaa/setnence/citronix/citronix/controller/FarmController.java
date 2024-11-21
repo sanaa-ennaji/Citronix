@@ -22,11 +22,11 @@ public class FarmController {
 
     private final FarmService farmService ;
 
-    public ResponseEntity<FarmResponseDTO> create (@Valid @RequestBody FarmCreateDTO createDTO){
+    @PostMapping
+    public ResponseEntity<FarmResponseDTO> createFarm(@Valid @RequestBody FarmCreateDTO createDTO) {
         FarmResponseDTO farmResponseDTO = farmService.create(createDTO);
         return new ResponseEntity<>(farmResponseDTO, HttpStatus.CREATED);
     }
-
     @PutMapping("/{id}")
     public ResponseEntity<FarmResponseDTO> update(
             @PathVariable @NotNull Long id,
@@ -37,20 +37,20 @@ public class FarmController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FarmResponseDTO> getFarmById(@PathVariable Long id) {
+    public ResponseEntity<FarmResponseDTO> getById(@PathVariable Long id) {
         return farmService.findById(id)
                 .map(farmResponseDTO -> new ResponseEntity<>(farmResponseDTO, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping
-    public ResponseEntity<List<FarmResponseDTO>> getAllFarms() {
+    public ResponseEntity<List<FarmResponseDTO>> getAll() {
         List<FarmResponseDTO> farms = farmService.findAll();
         return new ResponseEntity<>(farms, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFarm(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         farmService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

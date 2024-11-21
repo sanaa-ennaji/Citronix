@@ -32,7 +32,8 @@ public class Farm {
     @Column(nullable = false)
     private double area ;
 
-    @NotNull
+    @NotNull(message = "Create date must not be null.")
+
     private LocalDate createDate ;
 
     @OneToMany(mappedBy = "farm" , cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)

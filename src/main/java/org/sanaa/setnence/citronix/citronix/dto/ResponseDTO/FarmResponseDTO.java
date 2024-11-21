@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.sanaa.setnence.citronix.citronix.dto.EmbeddedDTO.FieldEmbbededDTO;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -22,6 +23,6 @@ public class FarmResponseDTO {
     @NotNull
     private double area;
     @NotNull
-    private String creationDate;
+    private LocalDate creationDate;
     private List<FieldEmbbededDTO> fields ;
 }

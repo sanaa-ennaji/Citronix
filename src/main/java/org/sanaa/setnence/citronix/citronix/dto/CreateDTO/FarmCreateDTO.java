@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,6 +24,6 @@ public class FarmCreateDTO {
     private double area;
 
     @NotNull(message = "Creation date cannot be null")
-    private String creationDate;
+    private LocalDate creationDate;
 
 }
