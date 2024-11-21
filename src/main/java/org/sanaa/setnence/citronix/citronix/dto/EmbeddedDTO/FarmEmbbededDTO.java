@@ -11,6 +11,5 @@ import lombok.NoArgsConstructor;
 public class FarmEmbbededDTO {
 
     private long id ;
-    @NotNull
     private String name;
 }

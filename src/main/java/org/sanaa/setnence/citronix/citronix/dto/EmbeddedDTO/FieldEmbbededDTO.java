@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FieldEmbbededDTO {
     private long id ;
-    @NotNull
     private String name;
 }
