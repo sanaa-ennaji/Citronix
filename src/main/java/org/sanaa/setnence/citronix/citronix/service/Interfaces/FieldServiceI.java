@@ -5,7 +5,10 @@ import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.FieldResponseDTO;
 import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.FieldUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.entity.Field;
 
+
 public interface FieldServiceI extends GenericServiceI<Field, FieldCreateDTO, FieldUpdateDTO, FieldResponseDTO> {
+
+
 
 
 }
