@@ -1,4 +1,7 @@
 package org.sanaa.setnence.citronix.citronix.repository;
 
-public interface HarvestRepository {
+import org.sanaa.setnence.citronix.citronix.entity.Harvest;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface HarvestRepository extends JpaRepository<Harvest, Long> {
 }
