@@ -3,11 +3,9 @@ package org.sanaa.setnence.citronix.citronix.dto.CreateDTO;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import org.sanaa.setnence.citronix.citronix.dto.EmbeddedDTO.HarvestDetailEmbbededDTO;
 import org.sanaa.setnence.citronix.citronix.entity.enums.Season;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class HarvestCreateDTO {
 
@@ -21,7 +19,4 @@ public class HarvestCreateDTO {
     @Min(value = 0, message = "Total quantity must be greater than or equal to 0.")
     private double totalQuantity;
 
-    private List<HarvestDetailEmbbededDTO> harvestDetails;
-
-    private List<SaleCreateDTO> sales;
 }
