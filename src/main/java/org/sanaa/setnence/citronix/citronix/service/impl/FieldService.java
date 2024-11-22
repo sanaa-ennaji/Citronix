@@ -11,10 +11,10 @@ import org.sanaa.setnence.citronix.citronix.exception.EntityNotFoundException;
 import org.sanaa.setnence.citronix.citronix.mapper.GenericMapper;
 import org.sanaa.setnence.citronix.citronix.repository.FarmRepository;
 import org.sanaa.setnence.citronix.citronix.repository.FieldRepository;
-import org.sanaa.setnence.citronix.citronix.repository.FieldStat;
 import org.sanaa.setnence.citronix.citronix.service.Interfaces.FieldServiceI;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,42 +45,36 @@ public class FieldService extends GenericService<Field, FieldCreateDTO, FieldUpd
     }
 
     private void validateFieldCreate(FieldCreateDTO createDTO) {
-        farmRepository.findById(createDTO.getFarmId()).orElseThrow(() ->
+        // Ensure the farm exists
+        Farm farm = farmRepository.findById(createDTO.getFarmId()).orElseThrow(() ->
                 new EntityNotFoundException("Farm not found"));
 
         if (createDTO.getArea() < 0.1) {
             throw new IllegalArgumentException("Field area must be at least 0.1 hectare.");
         }
 
-        FieldStat fieldStats = fieldRepository.getFieldStatsByFarmId(createDTO.getFarmId());
+        List<Field> fields = fieldRepository.findByFarmId(createDTO.getFarmId());
 
-        double totalFieldsArea = Optional.ofNullable(fieldStats.getSumArea()).orElse(0.0);
+        double totalFieldsArea = fields.stream()
+                .mapToDouble(Field::getArea)
+                .sum();
 
-        if (createDTO.getArea() + totalFieldsArea > getFarmTotalArea(createDTO.getFarmId())) {
+        long fieldCount = fields.size();
+
+        if (createDTO.getArea() + totalFieldsArea > farm.getArea()) {
             throw new IllegalArgumentException("The total area of fields in the farm cannot exceed the farm's total area.");
         }
 
-        if (createDTO.getArea() > getFarmTotalArea(createDTO.getFarmId()) * 0.5) {
+        if (createDTO.getArea() > farm.getArea() * 0.5) {
             throw new IllegalArgumentException("Field area cannot exceed 50% of the total farm area.");
         }
 
-        long fieldCount = fieldStats.getCount();
         if (fieldCount >= 10) {
             throw new IllegalArgumentException("A farm cannot have more than 10 fields.");
         }
     }
 
-
-
     private void validateFieldUpdate(FieldUpdateDTO updateDTO) {
         validateFieldCreate(new FieldCreateDTO(updateDTO.getName(), updateDTO.getArea(), updateDTO.getFarmId()));
-    }
-
-    private double getFarmTotalArea(long farmId) {
-        Optional<Farm> farm = farmRepository.findById(farmId);
-        if (farm.isEmpty()) {
-            throw new EntityNotFoundException("Farm not found");
-        }
-        return farm.get().getArea();
     }
 }
