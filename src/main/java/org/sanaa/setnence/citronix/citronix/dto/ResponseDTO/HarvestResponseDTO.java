@@ -1,8 +1,11 @@
 package org.sanaa.setnence.citronix.citronix.dto.ResponseDTO;
 
+import org.sanaa.setnence.citronix.citronix.dto.EmbeddedDTO.HarvestDetailEmbbededDTO;
+import org.sanaa.setnence.citronix.citronix.dto.EmbeddedDTO.SaleEmbeddedDTO;
 import org.sanaa.setnence.citronix.citronix.entity.enums.Season;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class HarvestResponseDTO {
     private long id;
@@ -13,7 +16,7 @@ public class HarvestResponseDTO {
 
     private double totalQuantity;
 
-    private List<HarvestDetailResponseDTO> harvestDetails;
+    private List<HarvestDetailEmbbededDTO> harvestDetails;
 
-    private List<SaleResponseDTO> sales;
+    private List<SaleEmbeddedDTO> sales;
 }
