@@ -27,7 +27,6 @@ public class Field {
     @JoinColumn(name = "farm_id", nullable = false)
     private Farm farm;
 
-
     @OneToMany(mappedBy = "field", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Tree> trees;
 

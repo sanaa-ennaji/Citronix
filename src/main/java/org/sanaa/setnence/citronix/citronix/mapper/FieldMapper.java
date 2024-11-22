@@ -1,6 +1,7 @@
 package org.sanaa.setnence.citronix.citronix.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.sanaa.setnence.citronix.citronix.dto.CreateDTO.FieldCreateDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.FieldResponseDTO;
@@ -13,6 +14,7 @@ import java.util.List;
 public interface FieldMapper extends GenericMapper<Field, FieldCreateDTO, FieldUpdateDTO, FieldResponseDTO> {
 
     @Override
+    @Mapping(target = "farm.id", source = "farmId")
     Field toEntity(FieldCreateDTO createDTO);
 
     @Override

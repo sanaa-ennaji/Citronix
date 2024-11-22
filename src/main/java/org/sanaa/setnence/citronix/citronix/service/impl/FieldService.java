@@ -15,7 +15,6 @@ import org.sanaa.setnence.citronix.citronix.service.Interfaces.FieldServiceI;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -45,7 +44,6 @@ public class FieldService extends GenericService<Field, FieldCreateDTO, FieldUpd
     }
 
     private void validateFieldCreate(FieldCreateDTO createDTO) {
-        // Ensure the farm exists
         Farm farm = farmRepository.findById(createDTO.getFarmId()).orElseThrow(() ->
                 new EntityNotFoundException("Farm not found"));
 
