@@ -5,6 +5,8 @@ import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.sanaa.setnence.citronix.citronix.entity.Field;
+import org.sanaa.setnence.citronix.citronix.validation.annotation.Exists;
 
 import java.time.LocalDate;
 
@@ -18,5 +20,6 @@ public class TreeCreateDTO {
     private LocalDate plantingDate;
 
     @NotNull(message = "Field ID is required.")
+    @Exists(entity = Field.class, message = "field not found.")
     private long fieldId;
 }
