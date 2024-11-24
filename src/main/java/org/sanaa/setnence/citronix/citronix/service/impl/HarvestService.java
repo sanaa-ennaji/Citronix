@@ -25,7 +25,6 @@ public class HarvestService extends GenericService<Harvest, HarvestCreateDTO, Ha
     private final TreeServiceI treeService;
     private final SaleServiceI saleService;
 
-    // Only one constructor required
     public HarvestService(GenericMapper<Harvest, HarvestCreateDTO, HarvestUpdateDTO, HarvestResponseDTO> mapper,
                           JpaRepository<Harvest, Long> repository,
                           HarvestRepository harvestRepository,
