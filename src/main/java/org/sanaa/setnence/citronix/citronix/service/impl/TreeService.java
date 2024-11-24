@@ -39,7 +39,7 @@ public class TreeService  extends GenericService<Tree, TreeCreateDTO, TreeUpdate
     }
 
     @Override
-    public TreeResponseDTO update(Long id, TreeUpdateDTO updateDTO) {
+    public TreeResponseDTO update(Long id, HarvestUpdateDTO updateDTO) {
         validateTree(updateDTO);
         return super.update(id, updateDTO);
     }

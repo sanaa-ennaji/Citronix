@@ -37,7 +37,7 @@ public class SaleService extends GenericService<Sale, SaleCreateDTO, SaleUpdateD
     }
 
     @Override
-    public SaleResponseDTO update(Long id, SaleUpdateDTO updateDTO) {
+    public SaleResponseDTO update(Long id, HarvestUpdateDTO updateDTO) {
         validateSale(updateDTO);
         return super.update(id, updateDTO);
     }

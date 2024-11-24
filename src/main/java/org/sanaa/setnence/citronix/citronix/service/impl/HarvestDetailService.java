@@ -40,7 +40,7 @@ public class HarvestDetailService extends GenericService<HarvestDetail, HarvestD
     }
 
     @Override
-    public HarvestDetailResponseDTO update(Long id, HarvestDetailUpdateDTO updateDTO) {
+    public HarvestDetailResponseDTO update(Long id, HarvestUpdateDTO updateDTO) {
         validateHarvestDetail(updateDTO);
         return super.update(id, updateDTO);
     }

@@ -31,7 +31,7 @@ public class FarmService extends GenericService<Farm, FarmCreateDTO, FarmUpdateD
     }
 
     @Override
-    public FarmResponseDTO update(Long id, @Valid FarmUpdateDTO updateDTO) {
+    public FarmResponseDTO update(Long id, HarvestUpdateDTO updateDTO) {
         return super.update(id, updateDTO);
     }
 

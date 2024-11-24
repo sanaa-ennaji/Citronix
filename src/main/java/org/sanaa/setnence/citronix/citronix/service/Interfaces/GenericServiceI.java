@@ -7,7 +7,7 @@ public interface GenericServiceI<Entity, CreateDTO, UpdateDTO, ResponseDTO> {
 
     ResponseDTO create(CreateDTO createDTO);
 
-    ResponseDTO update(Long id, UpdateDTO updateDTO);
+    ResponseDTO update(Long id, HarvestUpdateDTO updateDTO);
 
     Optional<ResponseDTO> findById(Long id);
 

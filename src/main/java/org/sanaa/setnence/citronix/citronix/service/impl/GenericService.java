@@ -25,7 +25,7 @@ public class GenericService<Entity, CreateDTO, UpdateDTO, ResponseDTO> implement
     }
 
     @Override
-    public ResponseDTO update(Long id, UpdateDTO updateDTO) {
+    public ResponseDTO update(Long id, HarvestUpdateDTO updateDTO) {
         Optional<Entity> optionalEntity = repository.findById(id);
         if (optionalEntity.isEmpty()) {
             throw new EntityNotFoundException("entity not found with id: " + id);

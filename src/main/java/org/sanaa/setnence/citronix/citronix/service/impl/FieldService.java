@@ -38,7 +38,7 @@ public class FieldService extends GenericService<Field, FieldCreateDTO, FieldUpd
     }
 
     @Override
-    public FieldResponseDTO update(Long id, FieldUpdateDTO updateDTO) {
+    public FieldResponseDTO update(Long id, HarvestUpdateDTO updateDTO) {
         validateFieldUpdate(updateDTO);
         return super.update(id, updateDTO);
     }
