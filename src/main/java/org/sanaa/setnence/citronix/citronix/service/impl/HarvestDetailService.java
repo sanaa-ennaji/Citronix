@@ -11,28 +11,27 @@ import org.sanaa.setnence.citronix.citronix.repository.HarvestDetailRepository;
 import org.sanaa.setnence.citronix.citronix.service.Interfaces.HarvestDetailServiceI;
 import org.sanaa.setnence.citronix.citronix.service.Interfaces.HarvestServiceI;
 import org.sanaa.setnence.citronix.citronix.service.Interfaces.TreeServiceI;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-
 public class HarvestDetailService extends GenericService<HarvestDetail, HarvestDetailCreateDTO, HarvestDetailUpdateDTO, HarvestDetailResponseDTO> implements HarvestDetailServiceI {
+
 
     private final HarvestDetailRepository harvestDetailRepository;
     private final HarvestServiceI harvestService;
     private final TreeServiceI treeService;
 
-    public HarvestDetailService(GenericMapper<HarvestDetail, HarvestDetailCreateDTO, HarvestDetailUpdateDTO, HarvestDetailResponseDTO> mapper,
-                                JpaRepository<HarvestDetail, Long> repository,
+    public HarvestDetailService(GenericMapper<HarvestDetail, HarvestDetailCreateDTO, HarvestDetailUpdateDTO, HarvestDetailResponseDTO> harvestDetailMapper,
                                 HarvestDetailRepository harvestDetailRepository,
                                 HarvestServiceI harvestService,
                                 TreeServiceI treeService) {
-        super(mapper, repository);
+        super(harvestDetailMapper, harvestDetailRepository);
         this.harvestDetailRepository = harvestDetailRepository;
         this.harvestService = harvestService;
         this.treeService = treeService;
     }
+
 
     @Override
     public HarvestDetailResponseDTO create(HarvestDetailCreateDTO createDTO) {

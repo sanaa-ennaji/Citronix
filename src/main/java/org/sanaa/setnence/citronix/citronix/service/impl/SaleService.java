@@ -42,8 +42,13 @@ public class SaleService extends GenericService<Sale, SaleCreateDTO, SaleUpdateD
         return super.update(id, updateDTO);
     }
 
-    private void validateSale(SaleCreateDTO saleDTO) {
-        HarvestResponseDTO harvest = harvestService.findById(saleDTO.getHarvestId())
-                .orElseThrow(() -> new EntityNotFoundException("Harvest not found with id: " + saleDTO.getHarvestId()));
+    private void validateSale(SaleCreateDTO createDTO) {
+        HarvestResponseDTO harvest = harvestService.findById(createDTO.getHarvestId())
+                .orElseThrow(() -> new EntityNotFoundException("Harvest not found with id: " + createDTO.getHarvestId()));
+    }
+
+    private void validateSale(SaleUpdateDTO updateDTO) {
+        HarvestResponseDTO harvest = harvestService.findById(updateDTO.getHarvestId())
+                .orElseThrow(() -> new EntityNotFoundException("Harvest not found with id: " + updateDTO.getHarvestId()));
     }
 }
