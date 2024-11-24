@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.sanaa.setnence.citronix.citronix.dto.CreateDTO.HarvestCreateDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.HarvestResponseDTO;
+import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.HarvestUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.service.Interfaces.HarvestServiceI;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

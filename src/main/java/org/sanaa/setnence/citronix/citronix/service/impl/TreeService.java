@@ -1,9 +1,11 @@
 package org.sanaa.setnence.citronix.citronix.service.impl;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.sanaa.setnence.citronix.citronix.dto.CreateDTO.TreeCreateDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.FieldResponseDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.TreeResponseDTO;
+import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.HarvestUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.TreeUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.entity.Tree;
 import org.sanaa.setnence.citronix.citronix.exception.EntityNotFoundException;
@@ -39,7 +41,7 @@ public class TreeService  extends GenericService<Tree, TreeCreateDTO, TreeUpdate
     }
 
     @Override
-    public TreeResponseDTO update(Long id, HarvestUpdateDTO updateDTO) {
+    public TreeResponseDTO update(Long id, @Valid HarvestUpdateDTO updateDTO) {
         validateTree(updateDTO);
         return super.update(id, updateDTO);
     }
