@@ -3,10 +3,16 @@ package org.sanaa.setnence.citronix.citronix.dto.CreateDTO;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.sanaa.setnence.citronix.citronix.entity.enums.Season;
 
 import java.time.LocalDate;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class HarvestCreateDTO {
 
     @NotNull(message = "Season must not be null.")
