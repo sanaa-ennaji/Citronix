@@ -5,9 +5,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.sanaa.setnence.citronix.citronix.dto.CreateDTO.HarvestDetailCreateDTO;
 import org.sanaa.setnence.citronix.citronix.entity.enums.Season;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,7 +22,9 @@ public class HarvestUpdateDTO {
     @NotNull(message = "Harvest date must not be null.")
     private LocalDate harvestDate;
 
-    @NotNull(message = "Total quantity must not be null.")
+
     @Min(value = 0, message = "Total quantity must be greater than or equal to 0.")
     private double totalQuantity;
+
+    private List<HarvestDetailCreateDTO> details;
 }

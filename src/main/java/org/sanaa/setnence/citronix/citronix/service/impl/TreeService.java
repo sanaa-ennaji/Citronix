@@ -71,12 +71,18 @@ public class TreeService  extends GenericService<Tree, TreeCreateDTO, TreeUpdate
     private void validateFieldDensity(Long fieldId) {
         FieldResponseDTO field = fieldService.findById(fieldId)
                 .orElseThrow(() -> new EntityNotFoundException("Field not found with id: " + fieldId));
-
-        double maxTreesPerSquareMeter = 0.1;
+        System.out.println("Validating field density for field ID: " + fieldId);
+        System.out.println("Field area (hectares): " + field.getArea());
+        double maxTreesPerHectare = 100.0;
         long treeCount = treeRepository.countByFieldId(fieldId);
-
-        if (treeCount + 1 > field.getArea() * maxTreesPerSquareMeter) {
+        System.out.println("Current tree count for field ID " + fieldId + ": " + treeCount);
+        double maxAllowedTrees = field.getArea() * maxTreesPerHectare;
+        System.out.println("Max allowed trees for field ID " + fieldId + ": " + maxAllowedTrees);
+        if (treeCount + 1 > maxAllowedTrees) {
             throw new IllegalArgumentException("Field exceeds the maximum density of 100 trees per hectare.");
         }
     }
+
+
+
 }

@@ -17,5 +17,5 @@ public class TreeResponseDTO {
 
     private int age;
 
-    private long fieldId;
+    private Long fieldId;
 }
