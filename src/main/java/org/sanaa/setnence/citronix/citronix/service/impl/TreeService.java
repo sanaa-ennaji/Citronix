@@ -1,7 +1,6 @@
 package org.sanaa.setnence.citronix.citronix.service.impl;
 
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import org.sanaa.setnence.citronix.citronix.dto.CreateDTO.TreeCreateDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.FieldResponseDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.TreeResponseDTO;
@@ -45,10 +44,14 @@ public class TreeService  extends GenericService<Tree, TreeCreateDTO, TreeUpdate
         return super.update(id, updateDTO);
     }
 
-    private void validateTree(TreeCreateDTO treeDTO) {
-        validatePlantingPeriod(treeDTO.getPlantingDate());
-        validateTreeAge(treeDTO.getPlantingDate());
-        validateFieldDensity(treeDTO.getFieldId());
+    private void validateTree(Object treeDTO) {
+        if (treeDTO instanceof TreeCreateDTO createDTO) {
+            validatePlantingPeriod(createDTO.getPlantingDate());
+            validateTreeAge(createDTO.getPlantingDate());
+            validateFieldDensity(createDTO.getFieldId());
+        } else if (treeDTO instanceof TreeUpdateDTO updateDTO) {
+            validateFieldDensity(updateDTO.getFieldId());
+        }
     }
 
     private void validatePlantingPeriod(LocalDate plantingDate) {
