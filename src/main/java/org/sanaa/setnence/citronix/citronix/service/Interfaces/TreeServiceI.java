@@ -6,4 +6,5 @@ import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.TreeUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.entity.Tree;
 
 public interface TreeServiceI  extends GenericServiceI<Tree, TreeCreateDTO, TreeUpdateDTO, TreeResponseDTO>{
+
 }
