@@ -5,7 +5,6 @@ import jakarta.validation.Valid;
 import org.sanaa.setnence.citronix.citronix.dto.CreateDTO.FarmCreateDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.FarmResponseDTO;
 import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.FarmUpdateDTO;
-import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.HarvestUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.entity.Farm;
 import org.sanaa.setnence.citronix.citronix.exception.CustomException;
 import org.sanaa.setnence.citronix.citronix.mapper.GenericMapper;
@@ -32,7 +31,7 @@ public class FarmService extends GenericService<Farm, FarmCreateDTO, FarmUpdateD
     }
 
     @Override
-    public FarmResponseDTO update(Long id, @Valid HarvestUpdateDTO updateDTO) {
+    public FarmResponseDTO update(Long id, @Valid FarmUpdateDTO updateDTO) {
         return super.update(id, updateDTO);
     }
 

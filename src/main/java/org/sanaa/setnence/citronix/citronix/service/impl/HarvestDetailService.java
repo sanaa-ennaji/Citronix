@@ -1,11 +1,9 @@
 package org.sanaa.setnence.citronix.citronix.service.impl;
 
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.sanaa.setnence.citronix.citronix.dto.CreateDTO.HarvestDetailCreateDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.HarvestDetailResponseDTO;
 import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.HarvestDetailUpdateDTO;
-import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.HarvestUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.entity.HarvestDetail;
 import org.sanaa.setnence.citronix.citronix.exception.EntityNotFoundException;
 import org.sanaa.setnence.citronix.citronix.mapper.GenericMapper;
@@ -42,7 +40,7 @@ public class HarvestDetailService extends GenericService<HarvestDetail, HarvestD
     }
 
     @Override
-    public HarvestDetailResponseDTO update(Long id, @Valid HarvestUpdateDTO updateDTO) {
+    public HarvestDetailResponseDTO update(Long id, HarvestDetailUpdateDTO updateDTO) {
         validateHarvestDetail(updateDTO);
         return super.update(id, updateDTO);
     }

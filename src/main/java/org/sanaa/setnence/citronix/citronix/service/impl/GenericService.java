@@ -1,9 +1,7 @@
 package org.sanaa.setnence.citronix.citronix.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.HarvestUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.mapper.GenericMapper;
 import org.sanaa.setnence.citronix.citronix.service.Interfaces.GenericServiceI;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -27,7 +25,7 @@ public class GenericService<Entity, CreateDTO, UpdateDTO, ResponseDTO> implement
     }
 
     @Override
-    public ResponseDTO update(Long id, @Valid HarvestUpdateDTO updateDTO) {
+    public ResponseDTO update(Long id, UpdateDTO updateDTO) {
         Optional<Entity> optionalEntity = repository.findById(id);
         if (optionalEntity.isEmpty()) {
             throw new EntityNotFoundException("entity not found with id: " + id);

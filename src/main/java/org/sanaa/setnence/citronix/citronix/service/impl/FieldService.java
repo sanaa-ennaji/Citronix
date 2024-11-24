@@ -1,12 +1,10 @@
 package org.sanaa.setnence.citronix.citronix.service.impl;
 
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.sanaa.setnence.citronix.citronix.dto.CreateDTO.FieldCreateDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.FieldResponseDTO;
 import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.FieldUpdateDTO;
 
-import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.HarvestUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.entity.Farm;
 import org.sanaa.setnence.citronix.citronix.entity.Field;
 import org.sanaa.setnence.citronix.citronix.exception.EntityNotFoundException;
@@ -40,7 +38,7 @@ public class FieldService extends GenericService<Field, FieldCreateDTO, FieldUpd
     }
 
     @Override
-    public FieldResponseDTO update(Long id, @Valid HarvestUpdateDTO updateDTO) {
+    public FieldResponseDTO update(Long id, FieldUpdateDTO updateDTO) {
         validateFieldUpdate(updateDTO);
         return super.update(id, updateDTO);
     }

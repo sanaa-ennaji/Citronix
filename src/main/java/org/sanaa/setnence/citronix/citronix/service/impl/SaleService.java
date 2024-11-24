@@ -1,11 +1,9 @@
 package org.sanaa.setnence.citronix.citronix.service.impl;
 
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.sanaa.setnence.citronix.citronix.dto.CreateDTO.SaleCreateDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.HarvestResponseDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.SaleResponseDTO;
-import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.HarvestUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.SaleUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.entity.Sale;
 import org.sanaa.setnence.citronix.citronix.exception.EntityNotFoundException;
@@ -39,7 +37,7 @@ public class SaleService extends GenericService<Sale, SaleCreateDTO, SaleUpdateD
     }
 
     @Override
-    public SaleResponseDTO update(Long id, @Valid HarvestUpdateDTO updateDTO) {
+    public SaleResponseDTO update(Long id, SaleUpdateDTO updateDTO) {
         validateSale(updateDTO);
         return super.update(id, updateDTO);
     }
