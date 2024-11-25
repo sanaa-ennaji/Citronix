@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HarvestDetailResponseDTO {
+    private long id ;
     private long harvestId;
 
     private long treeId;

@@ -12,8 +12,9 @@ import org.sanaa.setnence.citronix.citronix.entity.embedded.EmbeddedHarvestDetai
 @AllArgsConstructor
 @Entity
 public class HarvestDetail {
-    @EmbeddedId
-    private EmbeddedHarvestDetail id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @MapsId("harvestId")
     @ManyToOne(fetch = FetchType.LAZY)

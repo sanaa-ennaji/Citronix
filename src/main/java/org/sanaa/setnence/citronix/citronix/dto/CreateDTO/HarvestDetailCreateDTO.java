@@ -13,10 +13,10 @@ import org.sanaa.setnence.citronix.citronix.validation.annotation.Exists;
 @AllArgsConstructor
 public class HarvestDetailCreateDTO {
     @Exists(entity = Harvest.class, message = "harvest not found.")
-    private long harvestId;
+    private Long harvestId;
 
     @Exists(entity = Tree.class, message = "tree not found.")
-    private long treeId;
+    private Long treeId;
 
     @NotNull(message = "Quantity must not be null.")
     private double quantity;

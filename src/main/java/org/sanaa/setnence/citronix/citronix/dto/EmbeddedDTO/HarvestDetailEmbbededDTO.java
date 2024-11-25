@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class HarvestDetailEmbbededDTO {
     private long treeId;
+    private Long harvestId;
     private double quantity;
 }
