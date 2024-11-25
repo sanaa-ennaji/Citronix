@@ -25,4 +25,5 @@ public class FarmUpdateDTO {
 
     @NotNull(message = "Creation date cannot be null")
     private LocalDate createDate;
+
 }

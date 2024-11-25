@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.sanaa.setnence.citronix.citronix.dto.CreateDTO.FarmCreateDTO;
+import org.sanaa.setnence.citronix.citronix.dto.FarmSearchDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.FarmResponseDTO;
 import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.FarmUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.service.impl.FarmService;
@@ -53,5 +54,11 @@ public class FarmController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         farmService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity<List<FarmResponseDTO>> search(@RequestBody FarmSearchDTO searchDTO) {
+        List<FarmResponseDTO> farms = farmService.search(searchDTO);
+        return ResponseEntity.ok(farms);
     }
 }

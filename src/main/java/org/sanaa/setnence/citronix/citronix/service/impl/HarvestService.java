@@ -53,6 +53,8 @@ public class HarvestService extends GenericService<Harvest, HarvestCreateDTO, Ha
         return super.update(id, updateDTO);
     }
 
+
+
     private void validateHarvest(Object harvestDTO) {
         if (harvestDTO instanceof HarvestCreateDTO) {
             HarvestCreateDTO createDTO = (HarvestCreateDTO) harvestDTO;
@@ -64,6 +66,8 @@ public class HarvestService extends GenericService<Harvest, HarvestCreateDTO, Ha
             validateTotalQuantity(updateDTO.getTotalQuantity());
         }
     }
+
+
 
     private void validateSeason(@NotNull(message = "Season must not be null.") Season season) {
         if (season == null) {

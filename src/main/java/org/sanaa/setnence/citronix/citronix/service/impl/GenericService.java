@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class GenericService<Entity, CreateDTO, UpdateDTO, ResponseDTO> implements GenericServiceI<Entity, CreateDTO, UpdateDTO, ResponseDTO> {
 
-    private final GenericMapper<Entity, CreateDTO, UpdateDTO, ResponseDTO> mapper;
+    protected final GenericMapper<Entity, CreateDTO, UpdateDTO, ResponseDTO> mapper;
     protected final JpaRepository<Entity, Long> repository;
 
     @Override

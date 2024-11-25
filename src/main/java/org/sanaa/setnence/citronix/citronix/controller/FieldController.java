@@ -31,6 +31,7 @@ public class FieldController {
     }
 
 
+
     @PutMapping("/{id}")
     public ResponseEntity<FieldResponseDTO> updateField(
             @PathVariable @Positive(message = "Field ID must be positive") Long id,
@@ -60,4 +61,6 @@ public class FieldController {
         fieldService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+
 }
