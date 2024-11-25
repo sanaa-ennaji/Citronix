@@ -5,5 +5,5 @@ import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.HarvestDetailRespons
 import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.HarvestDetailUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.entity.HarvestDetail;
 
-public interface HarvestDetailServiceI extends GenericServiceI<HarvestDetail, HarvestDetailCreateDTO, HarvestDetailUpdateDTO, HarvestDetailResponseDTO>{
+public interface HarvestDetailServiceI {
 }
