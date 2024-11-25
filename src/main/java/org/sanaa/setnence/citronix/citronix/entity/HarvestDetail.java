@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.sanaa.setnence.citronix.citronix.entity.embedded.EmbeddedHarvestDetail;
 
 @Data
 @NoArgsConstructor
@@ -16,14 +15,14 @@ public class HarvestDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @MapsId("harvestId")
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "harvest_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "harvest_id")
     private Harvest harvest;
 
-    @MapsId("treeId")
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tree_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "tree_id")
     private Tree tree;
 
     @NotNull

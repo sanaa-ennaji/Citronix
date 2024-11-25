@@ -5,7 +5,6 @@ import org.sanaa.setnence.citronix.citronix.dto.CreateDTO.HarvestDetailCreateDTO
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.HarvestDetailResponseDTO;
 import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.HarvestDetailUpdateDTO;
 import org.sanaa.setnence.citronix.citronix.entity.HarvestDetail;
-import org.sanaa.setnence.citronix.citronix.entity.embedded.EmbeddedHarvestDetail;
 import org.sanaa.setnence.citronix.citronix.exception.EntityNotFoundException;
 import org.sanaa.setnence.citronix.citronix.mapper.GenericMapper;
 import org.sanaa.setnence.citronix.citronix.repository.HarvestDetailRepository;
@@ -14,67 +13,36 @@ import org.sanaa.setnence.citronix.citronix.service.Interfaces.HarvestServiceI;
 import org.sanaa.setnence.citronix.citronix.service.Interfaces.TreeServiceI;
 import org.springframework.stereotype.Service;
 
-
-import java.util.List;
-import java.util.Optional;
-
 @Service
 @Transactional
-public class HarvestDetailService implements HarvestDetailServiceI {
+public class HarvestDetailService extends GenericService<HarvestDetail, HarvestDetailCreateDTO, HarvestDetailUpdateDTO, HarvestDetailResponseDTO> implements HarvestDetailServiceI {
+
 
     private final HarvestDetailRepository harvestDetailRepository;
     private final HarvestServiceI harvestService;
     private final TreeServiceI treeService;
-    private final GenericMapper<HarvestDetail, HarvestDetailCreateDTO, HarvestDetailUpdateDTO, HarvestDetailResponseDTO> harvestDetailMapper;
 
     public HarvestDetailService(GenericMapper<HarvestDetail, HarvestDetailCreateDTO, HarvestDetailUpdateDTO, HarvestDetailResponseDTO> harvestDetailMapper,
                                 HarvestDetailRepository harvestDetailRepository,
                                 HarvestServiceI harvestService,
                                 TreeServiceI treeService) {
-        this.harvestDetailMapper = harvestDetailMapper;
+        super(harvestDetailMapper, harvestDetailRepository);
         this.harvestDetailRepository = harvestDetailRepository;
         this.harvestService = harvestService;
         this.treeService = treeService;
     }
 
+
     @Override
     public HarvestDetailResponseDTO create(HarvestDetailCreateDTO createDTO) {
         validateHarvestDetail(createDTO);
-        HarvestDetail harvestDetail = harvestDetailMapper.toEntity(createDTO);
-        harvestDetail = harvestDetailRepository.save(harvestDetail);
-        return harvestDetailMapper.toDTO(harvestDetail);
+        return super.create(createDTO);
     }
 
     @Override
-    public HarvestDetailResponseDTO update(EmbeddedHarvestDetail id, HarvestDetailUpdateDTO updateDTO) {
+    public HarvestDetailResponseDTO update(Long id, HarvestDetailUpdateDTO updateDTO) {
         validateHarvestDetail(updateDTO);
-        Optional<HarvestDetail> optionalHarvestDetail = harvestDetailRepository.findById(id);
-        if (optionalHarvestDetail.isEmpty()) {
-            throw new EntityNotFoundException("HarvestDetail not found with id: " + id);
-        }
-        HarvestDetail harvestDetail = optionalHarvestDetail.get();
-        harvestDetailMapper.updateEntityFromDTO(updateDTO, harvestDetail);
-        harvestDetail = harvestDetailRepository.save(harvestDetail);
-        return harvestDetailMapper.toDTO(harvestDetail);
-    }
-
-    @Override
-    public Optional<HarvestDetailResponseDTO> findById(EmbeddedHarvestDetail id) {
-        return harvestDetailRepository.findById(id).map(harvestDetailMapper::toDTO);
-    }
-
-    @Override
-    public List<HarvestDetailResponseDTO> findAll() {
-        List<HarvestDetail> harvestDetails = harvestDetailRepository.findAll();
-        return harvestDetailMapper.toDTOs(harvestDetails);
-    }
-
-    @Override
-    public void delete(EmbeddedHarvestDetail id) {
-        if (!harvestDetailRepository.existsById(id)) {
-            throw new EntityNotFoundException("HarvestDetail not found with id: " + id);
-        }
-        harvestDetailRepository.deleteById(id);
+        return super.update(id, updateDTO);
     }
 
     private void validateHarvestDetail(Object harvestDetailDTO) {
@@ -103,6 +71,3 @@ public class HarvestDetailService implements HarvestDetailServiceI {
         }
     }
 }
-
-
-

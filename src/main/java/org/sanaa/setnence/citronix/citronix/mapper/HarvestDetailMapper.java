@@ -11,7 +11,7 @@ import org.sanaa.setnence.citronix.citronix.entity.HarvestDetail;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface HarvestDetailMapper {
+public interface HarvestDetailMapper extends GenericMapper<HarvestDetail, HarvestDetailCreateDTO, HarvestDetailUpdateDTO, HarvestDetailResponseDTO> {
 
     @Mapping(target = "harvest.id", source = "harvestId")
     @Mapping(target = "tree.id", source = "treeId")
@@ -25,6 +25,7 @@ public interface HarvestDetailMapper {
 
     void updateEntityFromDTO(HarvestDetailUpdateDTO updateDTO, @MappingTarget HarvestDetail entity);
 }
+
 
 
 
