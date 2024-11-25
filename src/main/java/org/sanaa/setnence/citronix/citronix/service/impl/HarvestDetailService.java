@@ -3,12 +3,8 @@ package org.sanaa.setnence.citronix.citronix.service.impl;
 import jakarta.transaction.Transactional;
 import org.sanaa.setnence.citronix.citronix.dto.CreateDTO.HarvestDetailCreateDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.HarvestDetailResponseDTO;
-import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.HarvestResponseDTO;
-import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.TreeResponseDTO;
 import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.HarvestDetailUpdateDTO;
-import org.sanaa.setnence.citronix.citronix.entity.Harvest;
 import org.sanaa.setnence.citronix.citronix.entity.HarvestDetail;
-import org.sanaa.setnence.citronix.citronix.entity.Tree;
 import org.sanaa.setnence.citronix.citronix.entity.embedded.EmbeddedHarvestDetail;
 import org.sanaa.setnence.citronix.citronix.exception.EntityNotFoundException;
 import org.sanaa.setnence.citronix.citronix.mapper.GenericMapper;
@@ -19,6 +15,7 @@ import org.sanaa.setnence.citronix.citronix.service.Interfaces.TreeServiceI;
 import org.springframework.stereotype.Service;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -48,8 +45,7 @@ public class HarvestDetailService implements HarvestDetailServiceI {
         return harvestDetailMapper.toDTO(harvestDetail);
     }
 
-
-
+    @Override
     public HarvestDetailResponseDTO update(EmbeddedHarvestDetail id, HarvestDetailUpdateDTO updateDTO) {
         validateHarvestDetail(updateDTO);
         Optional<HarvestDetail> optionalHarvestDetail = harvestDetailRepository.findById(id);
@@ -60,6 +56,25 @@ public class HarvestDetailService implements HarvestDetailServiceI {
         harvestDetailMapper.updateEntityFromDTO(updateDTO, harvestDetail);
         harvestDetail = harvestDetailRepository.save(harvestDetail);
         return harvestDetailMapper.toDTO(harvestDetail);
+    }
+
+    @Override
+    public Optional<HarvestDetailResponseDTO> findById(EmbeddedHarvestDetail id) {
+        return harvestDetailRepository.findById(id).map(harvestDetailMapper::toDTO);
+    }
+
+    @Override
+    public List<HarvestDetailResponseDTO> findAll() {
+        List<HarvestDetail> harvestDetails = harvestDetailRepository.findAll();
+        return harvestDetailMapper.toDTOs(harvestDetails);
+    }
+
+    @Override
+    public void delete(EmbeddedHarvestDetail id) {
+        if (!harvestDetailRepository.existsById(id)) {
+            throw new EntityNotFoundException("HarvestDetail not found with id: " + id);
+        }
+        harvestDetailRepository.deleteById(id);
     }
 
     private void validateHarvestDetail(Object harvestDetailDTO) {
@@ -88,4 +103,6 @@ public class HarvestDetailService implements HarvestDetailServiceI {
         }
     }
 }
+
+
 

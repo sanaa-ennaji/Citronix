@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.sanaa.setnence.citronix.citronix.dto.CreateDTO.HarvestDetailCreateDTO;
 import org.sanaa.setnence.citronix.citronix.dto.ResponseDTO.HarvestDetailResponseDTO;
 import org.sanaa.setnence.citronix.citronix.dto.UpdateDTO.HarvestDetailUpdateDTO;
+import org.sanaa.setnence.citronix.citronix.entity.embedded.EmbeddedHarvestDetail;
 import org.sanaa.setnence.citronix.citronix.service.Interfaces.HarvestDetailServiceI;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,21 +22,23 @@ public class HarvestDetailController {
 
     private final HarvestDetailServiceI harvestDetailService;
 
+
     @PostMapping
     public ResponseEntity<HarvestDetailResponseDTO> createHarvestDetail(@RequestBody @Valid HarvestDetailCreateDTO createDTO) {
         HarvestDetailResponseDTO createdHarvestDetail = harvestDetailService.create(createDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdHarvestDetail);
     }
 
+
     @PutMapping("/{id}")
-    public ResponseEntity<HarvestDetailResponseDTO> updateHarvestDetail(@PathVariable Long id, @RequestBody @Valid HarvestDetailUpdateDTO updateDTO) {
+    public ResponseEntity<HarvestDetailResponseDTO> updateHarvestDetail(@PathVariable EmbeddedHarvestDetail id, @RequestBody @Valid HarvestDetailUpdateDTO updateDTO) {
         HarvestDetailResponseDTO updatedHarvestDetail = harvestDetailService.update(id, updateDTO);
         return ResponseEntity.ok(updatedHarvestDetail);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<HarvestDetailResponseDTO> getHarvestDetailById(@PathVariable Long id) {
+    public ResponseEntity<HarvestDetailResponseDTO> getHarvestDetailById(@PathVariable EmbeddedHarvestDetail id) {
         return harvestDetailService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
@@ -48,7 +51,7 @@ public class HarvestDetailController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteHarvestDetail(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteHarvestDetail(@PathVariable EmbeddedHarvestDetail id) {
         harvestDetailService.delete(id);
         return ResponseEntity.noContent().build();
     }
